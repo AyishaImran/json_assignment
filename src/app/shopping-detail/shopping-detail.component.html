@@ -1,0 +1,83 @@
+<!--For Page-->
+<div class="page">
+  <h1 class="color">Shopping App Assignment</h1>
+  <!--For Row containing all card-->
+  <div class="row">
+    <div class="col-sm-4">
+      <p class="category-color">Search by category:</p>
+      <input type="text" class="form-control" [(ngModel)]="filteredString" />
+      <br />
+      <div></div>
+    </div>
+  </div>
+  <div class="row">
+    <!--Card 1-->
+    <div class="col-sm-4" *ngFor="let list of lists | filter: filteredString">
+      <div class="card card-cascade card-ecommerce wider shadow mb-5">
+        <!--Card image-->
+        <div class="view view-cascade overlay text-center">
+          <img class="card-img-top" src="../assets/images/banana.jpg" alt="" />
+          <a>
+            <div class="mask rgba-white-slight"></div>
+          </a>
+        </div>
+        <!--Card Body-->
+        <div class="card-body card-body-cascade text-center">
+          <!--Card Title-->
+          <h4 class="card-title">
+            <strong
+              ><a href="">{{ list.p_name }}</a></strong
+            >
+          </h4>
+          <!-- Card Description-->
+          <p class="card-text">
+            {{ list.p_details }}
+            Product_id: {{ list.p_id }} Quantity:
+            {{ list.p_availability }}
+          </p>
+          <p class="card-text">Product_id: {{ list.p_id }}</p>
+          <div class="input-group number-spinner">
+            <span class="input-group-btn">
+              <button
+                class="btn btn-default"
+                data-dir="dwn"
+                (click)="decrease_quantity(list)"
+              >
+                <span class="glyphicon glyphicon-minus">-</span>
+              </button>
+            </span>
+            <input
+              type="text"
+              class="form-control text-center"
+              [(ngModel)]="list.p_availability"
+              (change)="countPrice(list)"
+            />
+            <span class="input-group-btn">
+              <button
+                class="btn btn-default"
+                data-dir="up"
+                (click)="increase_quantity(list)"
+              >
+                <span class="glyphicon glyphicon-plus">+</span>
+              </button>
+            </span>
+          </div>
+          <p class="price">Cost: {{ list.p_cost }}</p>
+          <p class="price">{{ list.p_category }}</p>
+          <!-- Card Rating-->
+          <ul class="row rating">
+            <li><i class="fa fa-star"></i></li>
+            <li><i class="fa fa-star"></i></li>
+            <li><i class="fa fa-star"></i></li>
+            <li><i class="fa fa-star"></i></li>
+            <li><i class="fa fa-star"></i></li>
+          </ul>
+          <!--Card footer-->
+          <div class="card-footer">
+            <p>ADD TO CART</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
